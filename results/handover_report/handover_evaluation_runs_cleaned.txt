@@ -1,0 +1,398 @@
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch4300
+Timestamp: 2026-06-28 23:03:25
+Checkpoint epoch: 4300
+Number of episodes: 500
+
+REPORT: Progress 100
+Model epoch: 4300
+Run episodes: 500
+Success: 88
+Failure: 12
+Overall success rate: 0.88
+Average episode duration: 49.49
+Episode duration min and max: 7 247
+Episodes active at switch: 64
+Goals after switch: 56
+Collisions/failures after switch: 8
+Timeouts after switch: 0
+Post-handover success rate: 0.875
+
+REPORT: Progress 200
+Model epoch: 4300
+Run episodes: 500
+Success: 177
+Failure: 23
+Overall success rate: 0.885
+Average episode duration: 59.635
+Episode duration min and max: 5 1117
+Episodes active at switch: 140
+Goals after switch: 121
+Collisions/failures after switch: 19
+Timeouts after switch: 0
+Post-handover success rate: 0.8642857142857143
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch4300
+Timestamp: 2026-06-29 00:22:05
+Checkpoint epoch: 4300
+Number of episodes: 500
+
+REPORT: Progress 100
+Model epoch: 4300
+Run episodes: 500
+Success: 87
+Failure: 13
+Overall success rate: 0.87
+Average episode duration: 58.34
+Episode duration min and max: 1 455
+Episodes active at switch: 60
+Goals after switch: 48
+Collisions/failures after switch: 12
+Timeouts after switch: 0
+Post-handover success rate: 0.8
+
+REPORT: Progress 200
+Model epoch: 4300
+Run episodes: 500
+Success: 174
+Failure: 26
+Overall success rate: 0.87
+Average episode duration: 52.81
+Episode duration min and max: 1 455
+Episodes active at switch: 118
+Goals after switch: 93
+Collisions/failures after switch: 25
+Timeouts after switch: 0
+Post-handover success rate: 0.788135593220339
+
+REPORT: Progress 300
+Model epoch: 4300
+Run episodes: 500
+Success: 257
+Failure: 43
+Overall success rate: 0.8566666666666667
+Average episode duration: 55.33
+Episode duration min and max: 1 940
+Episodes active at switch: 188
+Goals after switch: 146
+Collisions/failures after switch: 42
+Timeouts after switch: 0
+Post-handover success rate: 0.776595744680851
+
+REPORT: Progress 400
+Model epoch: 4300
+Run episodes: 500
+Success: 338
+Failure: 62
+Overall success rate: 0.845
+Average episode duration: 61.675
+Episode duration min and max: 1 965
+Episodes active at switch: 266
+Goals after switch: 207
+Collisions/failures after switch: 59
+Timeouts after switch: 0
+Post-handover success rate: 0.7781954887218046
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch1680
+Timestamp: 2026-06-29 02:53:30
+Checkpoint epoch: 1680
+Number of episodes: 10
+
+REPORT: Progress 10
+Model epoch: 1680
+Run episodes: 10
+Success: 8
+Failure: 2
+Overall success rate: 0.8
+Average episode duration: 151.1
+Episode duration min and max: 12 777
+Episodes active at switch: 5
+Goals after switch: 3
+Collisions/failures after switch: 2
+Timeouts after switch: 0
+Post-handover success rate: 0.6
+
+REPORT: Final
+Model epoch: 1680
+Run episodes: 10
+Success: 8
+Failure: 2
+Overall success rate: 0.8
+Average episode duration: 151.1
+Episode duration min and max: 12 777
+Episodes active at switch: 5
+Goals after switch: 3
+Collisions/failures after switch: 2
+Timeouts after switch: 0
+Post-handover success rate: 0.6
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch990
+Timestamp: 2026-06-29 03:11:35
+Checkpoint epoch: 990
+Number of episodes: 100
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch4300
+Timestamp: 2026-06-29 03:28:01
+Checkpoint epoch: 4300
+Number of episodes: 700
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch4300
+Timestamp: 2026-06-29 03:33:48
+Checkpoint epoch: 4300
+Number of episodes: 700
+
+REPORT: Progress 100
+Model epoch: 4300
+Run episodes: 700
+Success: 89
+Failure: 11
+Overall success rate: 0.89
+Average episode duration: 50.4
+Episode duration min and max: 3 211
+Episodes active at switch: 66
+Goals after switch: 55
+Collisions/failures after switch: 11
+Timeouts after switch: 0
+Post-handover success rate: 0.8333333333333334
+
+REPORT: Progress 200
+Model epoch: 4300
+Run episodes: 700
+Success: 178
+Failure: 22
+Overall success rate: 0.89
+Average episode duration: 51.805
+Episode duration min and max: 1 751
+Episodes active at switch: 133
+Goals after switch: 112
+Collisions/failures after switch: 21
+Timeouts after switch: 0
+Post-handover success rate: 0.8421052631578947
+
+REPORT: Progress 300
+Model epoch: 4300
+Run episodes: 700
+Success: 268
+Failure: 32
+Overall success rate: 0.8933333333333333
+Average episode duration: 53.333333333333336
+Episode duration min and max: 1 751
+Episodes active at switch: 195
+Goals after switch: 166
+Collisions/failures after switch: 29
+Timeouts after switch: 0
+Post-handover success rate: 0.8512820512820513
+
+REPORT: Progress 400
+Model epoch: 4300
+Run episodes: 700
+Success: 352
+Failure: 48
+Overall success rate: 0.88
+Average episode duration: 56.11
+Episode duration min and max: 1 751
+Episodes active at switch: 266
+Goals after switch: 222
+Collisions/failures after switch: 44
+Timeouts after switch: 0
+Post-handover success rate: 0.8345864661654135
+
+REPORT: Progress 500
+Model epoch: 4300
+Run episodes: 700
+Success: 447
+Failure: 53
+Overall success rate: 0.894
+Average episode duration: 56.702
+Episode duration min and max: 1 751
+Episodes active at switch: 332
+Goals after switch: 283
+Collisions/failures after switch: 49
+Timeouts after switch: 0
+Post-handover success rate: 0.8524096385542169
+
+REPORT: Progress 600
+Model epoch: 4300
+Run episodes: 700
+Success: 527
+Failure: 73
+Overall success rate: 0.8783333333333333
+Average episode duration: 59.66166666666667
+Episode duration min and max: 1 1500
+Episodes active at switch: 396
+Goals after switch: 329
+Collisions/failures after switch: 66
+Timeouts after switch: 1
+Post-handover success rate: 0.8308080808080808
+
+REPORT: Progress 700
+Model epoch: 4300
+Run episodes: 700
+Success: 612
+Failure: 88
+Overall success rate: 0.8742857142857143
+Average episode duration: 59.854285714285716
+Episode duration min and max: 1 1500
+Episodes active at switch: 468
+Goals after switch: 388
+Collisions/failures after switch: 79
+Timeouts after switch: 1
+Post-handover success rate: 0.8290598290598291
+
+REPORT: Final
+Model epoch: 4300
+Run episodes: 700
+Success: 612
+Failure: 88
+Overall success rate: 0.8742857142857143
+Average episode duration: 59.854285714285716
+Episode duration min and max: 1 1500
+Episodes active at switch: 468
+Goals after switch: 388
+Collisions/failures after switch: 79
+Timeouts after switch: 1
+Post-handover success rate: 0.8290598290598291
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch1750
+Timestamp: 2026-06-29 10:22:31
+Checkpoint epoch: 1750
+Number of episodes: 10
+
+REPORT: Progress 10
+Model epoch: 1750
+Run episodes: 10
+Success: 7
+Failure: 3
+Overall success rate: 0.7
+Average episode duration: 198.8
+Episode duration min and max: 13 1439
+Episodes active at switch: 6
+Goals after switch: 3
+Collisions/failures after switch: 3
+Timeouts after switch: 0
+Post-handover success rate: 0.5
+
+REPORT: Final
+Model epoch: 1750
+Run episodes: 10
+Success: 7
+Failure: 3
+Overall success rate: 0.7
+Average episode duration: 198.8
+Episode duration min and max: 13 1439
+Episodes active at switch: 6
+Goals after switch: 3
+Collisions/failures after switch: 3
+Timeouts after switch: 0
+Post-handover success rate: 0.5
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch1750
+Timestamp: 2026-06-29 10:40:00
+Checkpoint epoch: 1750
+Number of episodes: 10
+
+REPORT: Final
+Model epoch: 1750
+Run episodes: 10
+Success: 8
+Failure: 2
+Overall success rate: 0.8
+Average episode duration: 274.0
+Episode duration min and max: 12 1500
+Episodes active at switch: 8
+Goals after switch: 6
+Collisions/failures after switch: 1
+Timeouts after switch: 1
+Post-handover success rate: 0.75
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch445
+Timestamp: 2026-06-29 10:58:31
+Checkpoint epoch: 445
+Number of episodes: 10
+
+REPORT: Final
+Model epoch: 445
+Run episodes: 10
+Success: 9
+Failure: 1
+Overall success rate: 0.9
+Average episode duration: 212.9
+Episode duration min and max: 10 1500
+Episodes active at switch: 6
+Goals after switch: 5
+Collisions/failures after switch: 0
+Timeouts after switch: 1
+Post-handover success rate: 0.8333333333333334
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch445
+Timestamp: 2026-06-29 12:05:37
+Checkpoint epoch: 445
+Number of episodes: 100
+
+REPORT: Final
+Model epoch: 445
+Run episodes: 100
+Success: 84
+Failure: 16
+Overall success rate: 0.84
+Average episode duration: 112.96
+Episode duration min and max: 2 1500
+Episodes active at switch: 64
+Goals after switch: 49
+Collisions/failures after switch: 13
+Timeouts after switch: 2
+Post-handover success rate: 0.765625
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch445
+Timestamp: 2026-06-29 13:17:05
+Checkpoint epoch: 445
+Number of episodes: 100
+
+REPORT: Progress 100
+Model epoch: 445
+Run episodes: 100
+Success: 90
+Failure: 10
+Overall success rate: 0.9
+Average episode duration: 62.2
+Episode duration min and max: 1 1500
+Episodes active at switch: 59
+Goals after switch: 49
+Collisions/failures after switch: 9
+Timeouts after switch: 1
+Post-handover success rate: 0.8305084745762712
+
+REPORT: Final
+Model epoch: 445
+Run episodes: 100
+Success: 90
+Failure: 10
+Overall success rate: 0.9
+Average episode duration: 62.2
+Episode duration min and max: 1 1500
+Episodes active at switch: 59
+Goals after switch: 49
+Collisions/failures after switch: 9
+Timeouts after switch: 1
+Post-handover success rate: 0.8305084745762712
+RUN TITLE: Pioneer_handover_step_30_camNoID_lidarWithID_epoch445
+Timestamp: 2026-06-29 14:09:18
+Checkpoint epoch: 445
+Number of episodes: 100
+
+REPORT: Progress 100
+Model epoch: 445
+Run episodes: 100
+Success: 89
+Failure: 11
+Overall success rate: 0.89
+Average episode duration: 90.57
+Episode duration min and max: 6 1500
+Episodes active at switch: 58
+Goals after switch: 49
+Collisions/failures after switch: 8
+Timeouts after switch: 1
+Post-handover success rate: 0.8448275862068966
+
+REPORT: Final
+Model epoch: 445
+Run episodes: 100
+Success: 89
+Failure: 11
+Overall success rate: 0.89
+Average episode duration: 90.57
+Episode duration min and max: 6 1500
+Episodes active at switch: 58
+Goals after switch: 49
+Collisions/failures after switch: 8
+Timeouts after switch: 1
+Post-handover success rate: 0.8448275862068966

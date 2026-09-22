@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handover Log Viewer</title>
+  <link rel="stylesheet" href="log_viewer_table.css" />
+</head>
+<body>
+  <div class="page-container">
+    <header>
+      <h1>Handover Evaluation Log Viewer</h1>
+      <p>Load <code>handover_evaluation_runs.txt</code> to inspect the saved progress and final reports.</p>
+    </header>
+
+    <section class="controls">
+      <label class="file-label">
+        Select log file:
+        <input type="file" id="logFileInput" accept=".txt" />
+      </label>
+      <label class="control-label">
+        <input type="checkbox" id="groupByRun" checked />
+        Group by run
+      </label>
+      <label class="control-label">
+        Sort by
+        <select id="sortSelect">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="success">Success rate</option>
+          <option value="handover">Handover success rate</option>
+        </select>
+      </label>
+      <button id="loadBtn">Load selected file</button>
+      <button id="clearBtn">Clear</button>
+    </section>
+
+    <section class="status-panel">
+      <div id="statusMessage">No file loaded yet.</div>
+      <div class="summary-grid">
+        <div><strong>Reports</strong><div id="reportCount">0</div></div>
+        <div><strong>Run headers</strong><div id="headerCount">0</div></div>
+      </div>
+    </section>
+
+    <section class="viewer">
+      <div class="viewer-column">
+        <h2>Raw log content</h2>
+        <textarea id="logTextArea" placeholder="Paste log text here or load a file..." rows="18"></textarea>
+      </div>
+      <div class="viewer-column">
+        <h2>Parsed reports</h2>
+        <div class="table-wrapper">
+          <table id="reportTable">
+            <thead>
+              <tr>
+                <th>Report</th>
+                <th>Run title</th>
+                <th>Subrun</th>
+                <th>Timestamp</th>
+                <th>Episodes</th>
+                <th>Success</th>
+                <th>Failure</th>
+                <th>Success rate</th>
+                <th>Active switch</th>
+                <th>Goals after switch</th>
+                <th>Collisions</th>
+                <th>Timeouts</th>
+                <th>Post-handover success rate</th>
+                <th>Avg dur</th>
+                <th>Min dur</th>
+                <th>Max dur</th>
+              </tr>
+            </thead>
+            <tbody id="reportTableBody">
+              <tr class="empty-state-row"><td colspan="16">Load a log file to see parsed reports here.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const logFileInput = document.getElementById('logFileInput');
+    const loadBtn = document.getElementById('loadBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const logTextArea = document.getElementById('logTextArea');
+    const groupByRun = document.getElementById('groupByRun');
+    const sortSelect = document.getElementById('sortSelect');
+    const statusMessage = document.getElementById('statusMessage');
+    const reportCount = document.getElementById('reportCount');
+    const headerCount = document.getElementById('headerCount');
+
+    function normalizeText(text) {
+      return text.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    }
+
+    function parseReports(text) {
+      const lines = normalizeText(text).split('\n');
+      const reports = [];
+      let currentRun = null;
+      let currentReport = null;
+
+      const finalizeReport = () => {
+        if (currentReport) {
+          reports.push(currentReport);
+          currentReport = null;
+        }
+      };
+
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line) continue;
+
+        if (/^RUN TITLE:/i.test(line)) {
+          finalizeReport();
+          currentRun = {
+            runTitle: line.replace(/^RUN TITLE:\s*/i, ''),
+            subrun: 'Parent',
+            timestamp: '',
+            episodes: '',
+          };
+          continue;
+        }
+
+        if (/^REPORT:/i.test(line)) {
+          finalizeReport();
+          currentReport = {
+            reportType: line.replace(/^REPORT:\s*/i, ''),
+            runTitle: currentRun ? currentRun.runTitle : '',
+            subrun: currentRun ? currentRun.subrun : '',
+            timestamp: currentRun ? currentRun.timestamp : '',
+            episodes: currentRun ? currentRun.episodes : '',
+            success: '',
+            failure: '',
+            successRate: '',
+            activeAtSwitch: '',
+            goalsAfterSwitch: '',
+            collisions: '',
+            timeouts: '',
+            handoverSuccessRate: '',
+            averageDuration: '',
+            minDuration: '',
+            maxDuration: '',
+          };
+          continue;
+        }
+
+        if (!currentRun) continue;
+
+        if (/^Subrun:/i.test(line)) {
+          currentRun.subrun = line.replace(/^Subrun:\s*/i, '');
+          if (currentReport) currentReport.subrun = currentRun.subrun;
+        } else if (/^Timestamp:/i.test(line)) {
+          currentRun.timestamp = line.replace(/^Timestamp:\s*/i, '');
+          if (currentReport) currentReport.timestamp = currentRun.timestamp;
+        } else if (/^Number of episodes:/i.test(line)) {
+          currentRun.episodes = line.replace(/^Number of episodes:\s*/i, '');
+          if (currentReport) currentReport.episodes = currentRun.episodes;
+        } else if (/^Success:/i.test(line)) {
+          const value = line.replace(/^Success:\s*/i, '');
+          if (currentReport) currentReport.success = value;
+        } else if (/^Failure:/i.test(line)) {
+          const value = line.replace(/^Failure:\s*/i, '');
+          if (currentReport) currentReport.failure = value;
+        } else if (/^Overall success rate:/i.test(line)) {
+          const value = line.replace(/^Overall success rate:\s*/i, '');
+          if (currentReport) currentReport.successRate = value;
+        } else if (/^Episodes active at switch:/i.test(line)) {
+          const value = line.replace(/^Episodes active at switch:\s*/i, '');
+          if (currentReport) currentReport.activeAtSwitch = value;
+        } else if (/^Goals after switch:/i.test(line)) {
+          const value = line.replace(/^Goals after switch:\s*/i, '');
+          if (currentReport) currentReport.goalsAfterSwitch = value;
+        } else if (/^Collisions\/failures after switch:/i.test(line)) {
+          const value = line.replace(/^Collisions\/failures after switch:\s*/i, '');
+          if (currentReport) currentReport.collisions = value;
+        } else if (/^Timeouts after switch:/i.test(line)) {
+          const value = line.replace(/^Timeouts after switch:\s*/i, '');
+          if (currentReport) currentReport.timeouts = value;
+        } else if (/^Post-handover success rate:/i.test(line)) {
+          const value = line.replace(/^Post-handover success rate:\s*/i, '');
+          if (currentReport) currentReport.handoverSuccessRate = value;
+        } else if (/^Average episode duration:/i.test(line)) {
+          const value = line.replace(/^Average episode duration:\s*/i, '');
+          if (currentReport) currentReport.averageDuration = value;
+        } else if (/^Episode duration min and max:/i.test(line)) {
+          const value = line.replace(/^Episode duration min and max:\s*/i, '');
+          const parts = value.split(/\s+/).filter(Boolean);
+          if (currentReport) {
+            currentReport.minDuration = parts[0] || '';
+            currentReport.maxDuration = parts[1] || '';
+          }
+        }
+      }
+
+      finalizeReport();
+      return reports;
+    }
+
+    function parseNumber(value) {
+      const parsed = parseFloat(value);
+      return Number.isFinite(parsed) ? parsed : Number.NEGATIVE_INFINITY;
+    }
+
+    function sortReports(reports) {
+      const mode = sortSelect.value;
+      const sorted = [...reports];
+      sorted.sort((a, b) => {
+        if (mode === 'oldest') {
+          return (a.timestamp || '').localeCompare(b.timestamp || '');
+        }
+        if (mode === 'success') {
+          return parseNumber(b.successRate) - parseNumber(a.successRate);
+        }
+        if (mode === 'handover') {
+          return parseNumber(b.handoverSuccessRate) - parseNumber(a.handoverSuccessRate);
+        }
+        return (b.timestamp || '').localeCompare(a.timestamp || '');
+      });
+      return sorted;
+    }
+
+    function renderReports(text) {
+      const reports = parseReports(text);
+      const sortedReports = sortReports(reports);
+      const headers = new Set(sortedReports.map(r => r.runTitle).filter(Boolean)).size;
+      reportCount.textContent = sortedReports.length;
+      headerCount.textContent = headers;
+
+      const tbody = document.getElementById('reportTableBody');
+      tbody.innerHTML = '';
+
+      if (!sortedReports.length) {
+        tbody.innerHTML = '<tr class="empty-state-row"><td colspan="16">No reports were found in the loaded log.</td></tr>';
+        return;
+      }
+
+      if (groupByRun.checked) {
+        const groups = new Map();
+        sortedReports.forEach(report => {
+          const key = report.runTitle || 'Unknown run';
+          if (!groups.has(key)) groups.set(key, []);
+          groups.get(key).push(report);
+        });
+
+        groups.forEach((groupReports, runTitle) => {
+          const groupRow = document.createElement('tr');
+          groupRow.className = 'group-row';
+          const groupCell = document.createElement('td');
+          groupCell.colSpan = 16;
+          groupCell.innerHTML = `<strong>Run:</strong> ${runTitle}`;
+          groupRow.appendChild(groupCell);
+          tbody.appendChild(groupRow);
+
+          groupReports.forEach(report => {
+            const row = document.createElement('tr');
+            row.className = 'subrow';
+            [
+              report.reportType,
+              report.runTitle,
+              report.subrun,
+              report.timestamp,
+              report.episodes,
+              report.success,
+              report.failure,
+              report.successRate,
+              report.activeAtSwitch,
+              report.goalsAfterSwitch,
+              report.collisions,
+              report.timeouts,
+              report.handoverSuccessRate,
+              report.averageDuration,
+              report.minDuration,
+              report.maxDuration,
+            ].forEach(value => {
+              const cell = document.createElement('td');
+              cell.textContent = value || '—';
+              row.appendChild(cell);
+            });
+            tbody.appendChild(row);
+          });
+        });
+        return;
+      }
+
+      sortedReports.forEach(report => {
+        const row = document.createElement('tr');
+        [
+          report.reportType,
+          report.runTitle,
+          report.subrun,
+          report.timestamp,
+          report.episodes,
+          report.success,
+          report.failure,
+          report.successRate,
+          report.activeAtSwitch,
+          report.goalsAfterSwitch,
+          report.collisions,
+          report.timeouts,
+          report.handoverSuccessRate,
+          report.averageDuration,
+          report.minDuration,
+          report.maxDuration,
+        ].forEach(value => {
+          const cell = document.createElement('td');
+          cell.textContent = value || '—';
+          row.appendChild(cell);
+        });
+        tbody.appendChild(row);
+      });
+    }
+
+    function updateStatus(message, type = 'info') {
+      statusMessage.textContent = message;
+      statusMessage.dataset.type = type;
+    }
+
+    loadBtn.addEventListener('click', () => {
+      const file = logFileInput.files[0];
+      if (!file) {
+        updateStatus('Please choose a log file first.', 'warning');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        const text = reader.result;
+        logTextArea.value = text;
+        renderReports(text);
+        updateStatus(`Loaded ${file.name} successfully.`, 'success');
+      };
+      reader.onerror = () => updateStatus('Failed to read file.', 'error');
+      reader.readAsText(file, 'utf-8');
+    });
+
+    clearBtn.addEventListener('click', () => {
+      logFileInput.value = '';
+      logTextArea.value = '';
+      const tbody = document.getElementById('reportTableBody');
+      tbody.innerHTML = '<tr class="empty-state-row"><td colspan="16">Load a log file to see parsed reports here.</td></tr>';
+      reportCount.textContent = '0';
+      headerCount.textContent = '0';
+      updateStatus('Cleared the viewer.', 'info');
+    });
+
+    [groupByRun, sortSelect].forEach(element => {
+      element.addEventListener('change', () => {
+        if (logTextArea.value.trim()) {
+          renderReports(logTextArea.value);
+        }
+      });
+    });
+
+    logTextArea.addEventListener('input', () => {
+      const text = logTextArea.value;
+      renderReports(text);
+      updateStatus('Parsed text from editor.', 'info');
+    });
+  </script>
+</body>
+</html>

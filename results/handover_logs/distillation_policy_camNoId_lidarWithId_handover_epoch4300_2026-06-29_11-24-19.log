@@ -1,0 +1,27 @@
+amirmahdi@amirmahdi:~$ sudo apt install gh
+[sudo] password for amirmahdi: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+
+No apt package "gh", but there is a snap with that name.
+Try "snap install gh"
+
+E: Unable to locate package gh
+amirmahdi@amirmahdi:~$ gh auth login
+
+Command 'gh' not found, but can be installed with:
+
+sudo snap install gh       # version 2.86.0-112-gc30647b78, or
+sudo apt  install gitsome  # version 0.8.0+ds-4
+
+See 'snap info gh' for additional versions.
+
+amirmahdi@amirmahdi:~$ sudo snap install gh
+error: This revision of snap "gh" was published using classic confinement
+       and thus may perform arbitrary system changes outside of the security
+       sandbox that snaps are usually confined to, which may put your system at
+       risk.
+
+       If you understand and want to proceed repeat the command including
+       --classic.

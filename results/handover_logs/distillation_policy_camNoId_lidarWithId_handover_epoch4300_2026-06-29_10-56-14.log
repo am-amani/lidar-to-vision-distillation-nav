@@ -1,0 +1,16 @@
+========================================================================
+Controlled handover evaluation log
+Timestamp: 2026-06-29_10-56-14
+Script: distillation_policy_camNoId_lidarWithId_handover_epoch4300.py
+Run: Pioneer_handover_step_15_camNoID_lidarWithID_epoch1750
+Seed: 3407
+Device: cuda:0
+Checkpoint directory: /home/amirmahdi/Desktop/amania1/DRL-robot-navigation/TD3
+Checkpoint epoch: 1750
+Checkpoint prefix: epoch 1750.dat
+Episodes: 10
+Switch step: 15
+LiDAR robot ID: 1.0
+Vision robot token: 0.0
+Maximum episode steps: 1500
+========================================================================
