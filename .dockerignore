@@ -1,0 +1,11 @@
+.git
+.github
+catkin_ws/build
+catkin_ws/devel
+catkin_ws/install
+**/__pycache__
+TD3/runs
+TD3/logs
+TD3/pytorch_models
+training.gif
+*.png

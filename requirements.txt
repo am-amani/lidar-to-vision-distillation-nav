@@ -1,0 +1,14 @@
+# Python 3.8 / Ubuntu 20.04 reference environment used for validation.
+# ROS Python packages (rospy, cv_bridge and message packages) come from APT.
+numpy==1.24.3
+torch==2.1.1
+torchvision==0.16.1
+tensorboard==2.13.0
+tensorboardX==2.6.2.2
+tensorflow==2.13.1
+opencv-python==4.9.0.80
+Pillow==10.1.0
+matplotlib==3.7.5
+pandas==2.0.3
+squaternion==2023.9.2
+

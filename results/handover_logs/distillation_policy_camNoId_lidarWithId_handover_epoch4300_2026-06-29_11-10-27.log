@@ -1,0 +1,46 @@
+========================================================================
+Controlled handover evaluation log
+Timestamp: 2026-06-29_11-10-27
+Script: distillation_policy_camNoId_lidarWithId_handover_epoch4300.py
+Run: Pioneer_handover_step_15_camNoID_lidarWithID_epoch445
+Seed: 3407
+Device: cuda:0
+Checkpoint directory: /home/amirmahdi/Desktop/amania1/DRL-robot-navigation/TD3
+Checkpoint epoch: 445
+Checkpoint prefix: epoch 445.dat
+Episodes: 10
+Switch step: 15
+LiDAR robot ID: 1.0
+Vision robot token: 0.0
+Maximum episode steps: 1500
+========================================================================
+========================================================================
+Progress report
+Completed episodes: 10/10
+Success: 7
+Failure: 3
+Overall success rate: 0.7
+Episodes active at switch: 9
+Success before switch: 1
+Failure before switch: 0
+Goals after switch: 6
+Collisions/failures after switch: 2
+Timeouts after switch: 1
+Post-handover success rate: 0.6666666666666666
+Episode duration min/max: 9 / 1500
+========================================================================
+========================================================================
+Final report
+Completed episodes: 10/10
+Success: 7
+Failure: 3
+Overall success rate: 0.7
+Episodes active at switch: 9
+Success before switch: 1
+Failure before switch: 0
+Goals after switch: 6
+Collisions/failures after switch: 2
+Timeouts after switch: 1
+Post-handover success rate: 0.6666666666666666
+Episode duration min/max: 9 / 1500
+========================================================================

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# ROS / catkin generated output
+catkin_ws/build/
+catkin_ws/devel/
+catkin_ws/install/
+catkin_ws/devel_isolated/
+catkin_ws/install_isolated/
+catkin_ws/.catkin_workspace
+
+# Experiment output
+TD3/logs/
+TD3/runs/
+TD3/results/*.npy
+runs/
+logs/
+*.log
+!results/handover_logs/*.log
+events.out.tfevents.*
+
+# Models and replay buffers are stored in the private artifact repository
+*.pth
+*.pt
+*.datcamera_model
+*.datscan_model
+*.datencoder_model
+*.datactor_model
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+*~
