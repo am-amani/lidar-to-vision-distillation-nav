@@ -12,8 +12,8 @@ This file is updated after both branches are tested from fresh clones.
 - No authentication secrets were found by the initial text scan.
 - Several historical training scripts are blocked by replay buffers that were
   referenced but not found in either recovered folder. The two buffers used by
-  the latest student training scripts were found later (2026-09-22) and are
-  published with the models; see `docs/ARTIFACTS.md`.
+  the latest student training scripts were found later (2026-09-22); they are
+  not distributed, see `docs/ARTIFACTS.md`.
 
 ## Fresh-clone recovery test (2026-08-11)
 

@@ -1,19 +1,14 @@
-# Models, replay buffers and results
+# Pretrained models and results
 
-Model weights and datasets are too large for Git. They are published as a
-separate data record:
-
-**Data record:** the download link will be added here as soon as the data
-record is online.
+Model weights are too large for Git. They are attached to the GitHub release
+[`models-v1.0`](https://github.com/am-amani/lidar-to-vision-distillation-nav/releases/tag/models-v1.0).
 
 ## Contents
 
 | File | Size | Contents |
 |---|---|---|
-| `models.tar.gz` | ~300 MB | teachers, student checkpoints, result arrays |
-| `Replay_Buffer_Pioneer_Part1_first250k.pth` | 2.7 GB | Pioneer 3-DX teacher replay buffer, 250,000 transitions |
-| `replay_buffer_new_waffel_200_01_Part22_first250k.pth` | 2.8 GB | TurtleBot3 Waffle teacher replay buffer, 250,000 transitions |
-| `SHA256SUMS` | | checksums of all files above |
+| `models.tar.gz` | ~320 MB | teachers, student checkpoints, result arrays |
+| `SHA256SUMS` | | checksum of `models.tar.gz` |
 
 `models.tar.gz` extracts to:
 
@@ -35,19 +30,18 @@ next to the repository checkout:
 
 ```bash
 mkdir data && cd data
-# download the four files from the data record into this folder, then:
+curl -LO https://github.com/am-amani/lidar-to-vision-distillation-nav/releases/download/models-v1.0/models.tar.gz
+curl -LO https://github.com/am-amani/lidar-to-vision-distillation-nav/releases/download/models-v1.0/SHA256SUMS
 sha256sum -c SHA256SUMS
 tar -xzf models.tar.gz
-mkdir replay_buffers && mv *.pth replay_buffers/
 ```
 
 ```text
 data/
   teacher/  student/  results/
-  replay_buffers/
-    Replay_Buffer_Pioneer_Part1_first250k.pth
-    replay_buffer_new_waffel_200_01_Part22_first250k.pth
 ```
+
+The files are PyTorch pickles: check the checksum before loading them.
 
 ## What each file is used for
 
@@ -56,13 +50,16 @@ data/
 - **Student checkpoints**: the handover evaluation reads them from
   `DISTILLATION_CHECKPOINT_DIR` and picks the epoch with
   `DISTILLATION_CHECKPOINT_EPOCH`.
-- **Replay buffers**: `TD3/train_student.py` reads both buffers from
-  `REPLAY_BUFFER_DIR` (default `TD3/pytorch_models`). Each transition holds the
-  24-value robot state, the teacher action, reward, done flag, next state, the
-  camera image and the LiDAR scan. They are pickled `replay_buffer.ReplayBuffer`
-  objects, so load them from inside `TD3/` with the pinned `numpy`/`torch`
-  versions. Both buffers are held in memory: plan for at least 6 GB of free RAM
-  (16 GB recommended).
+
+## Replay buffers
+
+The teacher replay buffers (about 5.5 GB for the Pioneer and Waffle buffers)
+are not distributed with this repository. `TD3/train_student.py` reads both
+buffers from `REPLAY_BUFFER_DIR` (default `TD3/pytorch_models`), so student
+training cannot be rerun from this release alone. Each transition holds the
+24-value robot state, the teacher action, reward, done flag, next state, the
+camera image and the LiDAR scan, stored as a pickled
+`replay_buffer.ReplayBuffer`. Contact the authors if you need them.
 
 ## Known limitations
 

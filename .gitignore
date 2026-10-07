@@ -24,7 +24,7 @@ logs/
 !results/handover_logs/*.log
 events.out.tfevents.*
 
-# Models and replay buffers are stored in the private artifact repository
+# Models are attached to GitHub releases; replay buffers are not distributed
 *.pth
 *.pt
 *.datcamera_model
