@@ -44,14 +44,14 @@ docker run --rm drl-nav:pioneer scripts/docker_verify.sh
 
 Every line should say `PASS`.
 
-## 2. Download the pretrained models and replay buffers
+## 2. Download the pretrained models
 
-Download the files from the data record linked in [ARTIFACTS.md](ARTIFACTS.md)
+Download the files from the GitHub release linked in [ARTIFACTS.md](ARTIFACTS.md)
 into a `data/` folder next to the repository and unpack them as shown there.
 Then set two shell variables used in the rest of this tutorial:
 
 ```bash
-DATA="$PWD/../data"           # the folder with teacher/, student/, replay_buffers/
+DATA="$PWD/../data"           # the folder with teacher/, student/, results/
 OUT="$PWD/../output"          # where your own runs are written
 mkdir -p "$OUT"
 ```
@@ -113,7 +113,9 @@ hours; the script runs until you stop it.
 ## 6. Train a student from the replay buffers
 
 Student training does not start Gazebo. It learns from the recorded Pioneer
-and Waffle teacher buffers:
+and Waffle teacher buffers. The paper's buffers are not distributed (see
+[ARTIFACTS.md](ARTIFACTS.md)), so put your own two buffers in
+`$DATA/replay_buffers`:
 
 ```bash
 docker run --rm \

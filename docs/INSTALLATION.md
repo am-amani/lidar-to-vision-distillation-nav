@@ -53,7 +53,7 @@ export ROS_PORT_SIM=11311
 - **Gazebo cannot find a world or model:** set `GAZEBO_RESOURCE_PATH` to the
   repository path shown above.
 - **CUDA out of memory:** use CPU or reduce the distillation batch size.
-- **A replay buffer is not found:** download both buffers (see
-  `docs/ARTIFACTS.md`) and set `REPLAY_BUFFER_DIR` to their folder.
+- **A replay buffer is not found:** the buffers are not distributed (see
+  `docs/ARTIFACTS.md`); put your own in a folder and set `REPLAY_BUFFER_DIR`.
 - **A model shape does not match:** checkpoints belong to different teacher or
   student architectures. Use the checkpoint set named for the script.

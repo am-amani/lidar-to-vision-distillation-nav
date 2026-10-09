@@ -33,8 +33,7 @@ distillation, robot identity conditioning, and LiDAR-to-vision handover.
 - `catkin_ws/src/velodyne_simulator`: simulated Velodyne sensor integration.
 - `docs/SCRIPTS.md`: what each Python file does.
 - `docs/TUTORIAL.md`: step-by-step walkthrough with Docker.
-- `docs/ARTIFACTS.md`: pretrained models and replay buffers, and where to
-  download them.
+- `docs/ARTIFACTS.md`: pretrained models and where to download them.
 
 ## Quick start
 
@@ -132,9 +131,10 @@ Pretrained teachers for both robots can be downloaded as described in
 
 ### 6. Distillation and handover
 
-Student training uses the published Pioneer and Waffle replay buffers;
-handover evaluation uses the pretrained four-part student checkpoints. Both
-are in the data record ([docs/ARTIFACTS.md](docs/ARTIFACTS.md)). Read
+Student training needs the Pioneer and Waffle teacher replay buffers, which are
+not distributed; handover evaluation uses the pretrained four-part student
+checkpoints from the GitHub release
+([docs/ARTIFACTS.md](docs/ARTIFACTS.md)). Read
 [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md) for the inputs and environment
 variables of these scripts.
 
@@ -154,7 +154,7 @@ validation performed for the preserved release is recorded in
 
 ## Citation
 
-If you use this code, the pretrained models or the replay buffers, please cite:
+If you use this code or the pretrained models, please cite:
 
 > A. M. Amani, S. Amani and A. MajidiRad, "A Unified Conditional Policy for
 > Multi-Robot Navigation via LiDAR-to-Vision Distillation," *Machines*,
